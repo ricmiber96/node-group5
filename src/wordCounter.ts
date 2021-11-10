@@ -1,5 +1,9 @@
 const phrase1: string = "Pienso, luego programo.";
 const phrase2: string = "La vida es una aventura que tenemos el privilegio de disfrutar.";
+const phrase3: string = "Aqui no se come o que?";
+const phrase4: string = "Y el anillo pa cuando?";
+const phrase5: string = "Es el alcalde el que quiere que sean los vecinos el alcalde";
+const phrase6: string = "En una tribu comanche JAU JAU JAU";
 
 const aCounter = (phrase: string): number => {
   let counter = 0;
