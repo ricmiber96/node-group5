@@ -1,12 +1,15 @@
 let randomNumber : number
 const MINNUMBER = 1;
-const MAXNUMBER = 7;
 
 function getRandomNumber(minnumber : number, maxnumber : number):number{
     randomNumber = Math.floor(Math.random() * (maxnumber - minnumber) + minnumber)
     return randomNumber
 }
 
-console.log(getRandomNumber(MINNUMBER,MAXNUMBER));
+function getFaces():number{
+    console.log("Introduce el numero de caras del dado")
+    let numberFace = process.argv[2]
+    return getRandomNumber(MINNUMBER, parseInt(numberFace))
+}
 
-
+console.log(getFaces());
