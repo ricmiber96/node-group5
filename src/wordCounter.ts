@@ -1,3 +1,4 @@
+const fs = require('fs');
 const phrase1: string = "Pienso, luego programo.";
 const phrase2: string = "La vida es una aventura que tenemos el privilegio de disfrutar.";
 const phrase3: string = "Aqui no se come o que?";
@@ -16,13 +17,40 @@ const aCounter = (phrase: string): number => {
 
 const wordCounter = (phrase: string): number => {
   const counter = 0;
-  const phraseSplitted = phrase.split(" ");
-
+  let phraseSplitted = []
+  if(phrase.includes("\n")){
+    phrase = phrase.replace(/(\r\n|\n|\r)/gm," ");
+    phraseSplitted = phrase.split(" ");
+  }else {
+    phraseSplitted = phrase.split(" ");
+  }
   return phraseSplitted.length;
 }
+
+
+const wordCounterFromFile = () => {
+  const filePath = process.argv[2]
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, (err:any, data:string) => {
+      if (err != null) {
+        reject(err);
+      }
+      resolve(wordCounter(data.toString()));
+    });
+  }) 
+
+}
+
+const resultFileCounter = async() =>{
+  const result = await wordCounterFromFile()
+  console.log(result);
+}
+
 
 console.log("El número de palabras es: " + wordCounter(phrase1));
 console.log("El número de palabras es: " + wordCounter(phrase2));
 
 console.log("El número de a es: " + aCounter(phrase1));
 console.log("El número de a es: " + aCounter(phrase2));
+
+console.log(resultFileCounter());
