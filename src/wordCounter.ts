@@ -28,7 +28,7 @@ const wordCounter = (phrase: string): number => {
 }
 
 
-const wordCounterFromFile = () => {
+const wordCounterFromFile = ():Promise<number> => {
   const filePath = process.argv[2]
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, (err:any, data:string) => {
@@ -41,11 +41,15 @@ const wordCounterFromFile = () => {
 
 }
 
+
 const resultFileCounter = async() =>{
   const result = await wordCounterFromFile()
   console.log(result);
 }
 
+wordCounterFromFile()
+  .then(numberOfWords =>console.log(numberOfWords))
+  .catch(err => console.error(err))
 
 console.log("El número de palabras es: " + wordCounter(phrase1));
 console.log("El número de palabras es: " + wordCounter(phrase2));
